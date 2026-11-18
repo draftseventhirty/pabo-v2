@@ -1,21 +1,29 @@
-```txt
-npm install
-npm run dev
-```
+# pabo-v2
+a no-JS rewrite of my collection of useful services built for dumbphones and limited data plans. built out of my hatred for bloated websites and my love for old technology.
 
-```txt
-npm run deploy
-```
+## rewritten features:
+- qr code generator
+- tip calculator
 
-[For generating/synchronizing types based on your Worker configuration run](https://developers.cloudflare.com/workers/wrangler/commands/#types):
+## existing features to rewrite:
+- news aggregator that opens headlines in a text-only view (will look cleaner eventually)
+- weather client based on Open-Meteo
+- dictionary with audio pronunciation
 
-```txt
-npm run cf-typegen
-```
+## possible additions:
+works offline (no data):
+- unit converter
+- calculator
+- quick notes / scratchpad
+- countdown, timer & stopwatch
+- world clock
 
-Pass the `CloudflareBindings` as generics when instantiation `Hono`:
+needs a connection:
+- currency converter
+- crypto prices
+- internet radio browser
+- wikipedia text view
 
-```ts
-// src/index.ts
-const app = new Hono<{ Bindings: CloudflareBindings }>();
-```
+please make an issue for any suggestions!
+
+by the way: the name "pabo" comes from "바보", the Korean word for "dumb".
