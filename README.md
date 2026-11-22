@@ -6,11 +6,12 @@ a no-JS rewrite of my collection of useful services built for dumbphones and lim
 
 - qr code generator
 - tip calculator
+- text-only news reader
+- weather client based on Open-Meteo
 
 ## existing features to rewrite:
 
-- news aggregator that opens headlines in a text-only view (will look cleaner eventually)
-- weather client based on Open-Meteo
+- news aggregator (adding onto the reader)
 - dictionary with audio pronunciation
 
 ## possible additions:
