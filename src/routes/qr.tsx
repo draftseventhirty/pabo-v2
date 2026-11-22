@@ -17,7 +17,10 @@ async function genQR(inputURL: string): Promise<string> {
 
 qr.get("/", async (c) => {
   const inputURL = c.req.query("url") ?? "";
-  const qrImage = inputURL ? await genQR(inputURL) : "";
+  let qrImage = "";
+  if (inputURL) {
+    qrImage = await genQR(inputURL);
+  }
 
   return c.render(
     <div>
