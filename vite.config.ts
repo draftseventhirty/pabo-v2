@@ -3,12 +3,12 @@ import { defineConfig } from "vite";
 import ssrPlugin from "vite-ssr-components/plugin";
 
 export default defineConfig({
-  plugins: [cloudflare(), ssrPlugin()],
+  plugins: [cloudflare({ viteEnvironment: { name: "worker" } }), ssrPlugin()],
   optimizeDeps: {
     exclude: ["linkedom"],
   },
   environments: {
-    "pabo-v2": {
+    "worker": {
       optimizeDeps: {
         exclude: ["linkedom"],
       },
