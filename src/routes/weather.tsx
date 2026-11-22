@@ -55,9 +55,7 @@ async function getWeather(lat: string, lon: string) {
     const feels =
       data.hourly.apparent_temperature[i] +
       data.hourly_units.apparent_temperature;
-    const chance =
-      data.hourly.precipitation_probability[i] +
-      data.hourly_units.precipitation_probability;
+    const chance = data.hourly.precipitation_probability[i];
 
     forecast +=
       hour +
@@ -67,26 +65,44 @@ async function getWeather(lat: string, lon: string) {
       feels +
       ", precip chance: " +
       chance +
-      ".\n";
+      "%.\n";
     hoursShown++;
   }
+
+  return forecast;
 }
 
 weather.get("/", async (c) => {
-  const lat = c.req.query("lat") ?? "";
-  const lon = c.req.query("lon") ?? "";
-  async function runGet() {
-    if (lat && lon) await getWeather(lat, lon);
+  const lat = (c.req.query("lat") ?? "").trim();
+  const lon = (c.req.query("lon") ?? "").trim();
+
+  let readout: string | null = null;
+  if (lat && lon) {
+    try {
+      readout = await getWeather(lat, lon);
+    } catch {
+      readout = "could not fetch forecast for those coordinates.";
+    }
   }
-  let fullReadout = runGet();
+
   return c.render(
     <div>
       <form method="post" action="/weather/trigger">
-        <input type="text" id="lat" placeholder="latitude (12.34)" />
-        <input type="text" id="lon" placeholder="longitude (-56.78)" />
+        <input
+          type="text"
+          name="lat"
+          value={lat}
+          placeholder="latitude (12.34)"
+        />
+        <input
+          type="text"
+          name="lon"
+          value={lon}
+          placeholder="longitude (-56.78)"
+        />
         <button>fetch</button>
-        <pre id="info">{fullReadout ?? "forecast appears here..."}</pre>
       </form>
+      <pre id="info">{readout ?? "forecast appears here..."}</pre>
     </div>,
     { pageTitle: "weather" },
   );
