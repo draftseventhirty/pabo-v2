@@ -8,8 +8,7 @@ export default defineConfig({
     exclude: ["linkedom"],
   },
   environments: {
-    // Match your worker environment name if customized (default is usually 'worker' or your worker name)
-    worker: {
+    "pabo-v2": {
       optimizeDeps: {
         exclude: ["linkedom"],
       },
