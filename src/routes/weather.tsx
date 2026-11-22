@@ -86,7 +86,7 @@ weather.get("/", async (c) => {
   }
 
   return c.render(
-    <div>
+    <main>
       <form method="post" action="/weather/trigger">
         <input
           type="text"
@@ -102,8 +102,8 @@ weather.get("/", async (c) => {
         />
         <button>fetch</button>
       </form>
-      <pre id="info">{readout ?? "forecast appears here..."}</pre>
-    </div>,
+      <pre id="info">{readout ?? ""}</pre>
+    </main>,
     { pageTitle: "weather" },
   );
 });

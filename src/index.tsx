@@ -3,6 +3,7 @@ import { renderer } from "./renderer";
 import tipcalc from "./routes/tipcalc";
 import qr from "./routes/qr";
 import weather from "./routes/weather";
+import news from "./routes/news";
 
 const app = new Hono();
 
@@ -12,16 +13,20 @@ app.use(renderer);
 
 app.get("/", (c) => {
   return c.render(
-    <div>
-      <h3>
+    <main>
+      <strong>
         <i>V2: now with NO client-side JS!</i>
-      </h3>
+      </strong>
+      <br />
+      <br />
       <a href="/tipcalc">tip calculator</a>
       <br />
       <a href="/qr">QR code generator</a>
       <br />
       <a href="/weather">weather</a>
-    </div>,
+      <br />
+      <a href="/news">news renderer</a>
+    </main>,
     { pageTitle },
   );
 });
@@ -29,5 +34,6 @@ app.get("/", (c) => {
 app.route("/tipcalc", tipcalc);
 app.route("/qr", qr);
 app.route("/weather", weather);
+app.route("/news", news);
 
 export default app;

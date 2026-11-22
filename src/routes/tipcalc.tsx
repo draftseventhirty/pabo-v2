@@ -27,7 +27,7 @@ tipcalc.get("/", (c) => {
     : { completeTip: undefined, totalCost: undefined };
 
   return c.render(
-    <div>
+    <main>
       <form method="post" action="/tipcalc/trigger">
         <input type="text" placeholder="enter subtotal" name="subtotalPR" />
         <input
@@ -43,7 +43,7 @@ tipcalc.get("/", (c) => {
           <p>total: ${totalCost}</p>
         </div>
       )}
-    </div>,
+    </main>,
     { pageTitle: "tip calculator" },
   );
 });

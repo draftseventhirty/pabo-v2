@@ -23,7 +23,7 @@ qr.get("/", async (c) => {
   }
 
   return c.render(
-    <div>
+    <main>
       <form method="post" action="/qr/trigger">
         <input type="text" placeholder="enter URL" name="inputURL" />
         <button>generate</button>
@@ -31,7 +31,7 @@ qr.get("/", async (c) => {
         {qrImage && <img name="qrFrame" src={qrImage} />}
         {inputURL && <p>{inputURL}</p>}
       </form>
-    </div>,
+    </main>,
     { pageTitle: "QR code generator" },
   );
 });
