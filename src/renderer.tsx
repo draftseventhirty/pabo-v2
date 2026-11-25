@@ -1,5 +1,6 @@
 import { jsxRenderer } from "hono/jsx-renderer";
-import { Link, ViteClient } from "vite-ssr-components/hono";
+import { ViteClient } from "vite-ssr-components/hono";
+import stylesheet from "./style.css?inline";
 
 declare module "hono" {
   interface ContextRenderer {
@@ -15,7 +16,7 @@ export const renderer = jsxRenderer(({ children, pageTitle = "pabo" }) => {
     <html>
       <head>
         <ViteClient />
-        <Link href="/src/style.css" rel="stylesheet" />
+        <style>{stylesheet}</style>
         <link rel="icon" href="/favicon.ico" />
         <title>{pageTitle}</title>
       </head>
