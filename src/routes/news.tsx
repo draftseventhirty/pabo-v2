@@ -13,6 +13,11 @@ export async function getArticle(url: string) {
 
   // parseHTML returns a standard DOM document compatible with Readability
   const { document } = parseHTML(html);
+  document
+    .querySelectorAll(
+      "img, picture, source, svg, video, audio, iframe, object, embed, pre",
+    )
+    .forEach((el) => el.remove());
 
   // Optional: set base URL so relative links/images resolve properly
   const base = document.createElement("base");
@@ -46,23 +51,29 @@ news.post("/reader", async (c) => {
   const articleAuthor = article?.byline ?? "Unknown Author";
   const articleIsoDT = article?.publishedTime ?? "";
   const articleDateDT = new Date(articleIsoDT);
-  const articleDateTime = articleDateDT.toLocaleString("en-US", {
-    month: "long",
-    day: "numeric",
-    year: "numeric",
-    hour: "numeric",
-    minute: "2-digit",
-    timeZoneName: "short",
-  });
+  const articleDateTime = articleDateDT.toLocaleString("sv-SE", { // sv-SE to get iso-8601
+    timeZone: 'UTC',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit'
+  }) + " UTC";
+
+  c.header("Content-Security-Policy", "script-src 'none'");
 
   return c.render(
     <main>
       <article>
         <header>
-          {articleAuthor} - {articleDateTime}
+          {articleAuthor}
+          <br />
+          {articleDateTime}
         </header>
         <br />
-        {raw(articleContent)}
+        <section>
+          {raw(articleContent)}
+        </section>
       </article>
       <br />
       <a href={url}>original article</a>

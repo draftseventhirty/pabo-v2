@@ -7,11 +7,4 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ["linkedom"],
   },
-  environments: {
-    "worker": {
-      optimizeDeps: {
-        exclude: ["linkedom"],
-      },
-    },
-  },
 });

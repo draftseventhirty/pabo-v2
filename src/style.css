@@ -53,21 +53,19 @@ h3 {
   font-size: 1.1rem;
 }
 
-/*pre,
-section,
-code {
-  background: #f0f0f0;
-  background: var(--code-bg);
-  font-family: inherit;
-}
-
 pre,
 section {
   padding: 0.5rem;
   overflow-x: auto;
   border-left: 2px solid #ccc;
   border-left: 2px solid var(--border);
-}*/
+  background: #f0f0f0;
+  background: var(--code-bg);
+  font-family: inherit;
+  width: fit-content;
+  max-width: 100%;
+  overflow-x: auto;
+}
 
 blockquote {
   border-left: 2px solid #ccc;
